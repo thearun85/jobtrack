@@ -28,3 +28,6 @@ class Rejected(BaseEvent):
 
 class Ghosted(BaseEvent):
     event_type: Literal["ghosted"] = "ghosted"
+
+
+Event = Applied | Rejected | Ghosted
