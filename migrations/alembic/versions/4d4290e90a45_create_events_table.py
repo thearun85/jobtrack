@@ -1,8 +1,8 @@
 """create events table
 
-Revision ID: 7505cebf4e60
+Revision ID: 4d4290e90a45
 Revises:
-Create Date: 2026-04-21 17:06:48.155787
+Create Date: 2026-04-21 17:19:00.691247
 
 """
 
@@ -13,7 +13,7 @@ from alembic import op
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision: str = "7505cebf4e60"
+revision: str = "4d4290e90a45"
 down_revision: str | Sequence[str] | None = None
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
