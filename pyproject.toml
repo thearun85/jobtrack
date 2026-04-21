@@ -1,0 +1,62 @@
+[tool.poetry]
+name = "jobtrack"
+version = "0.1.0"
+description = "Event-sourced job application tracker"
+authors = ["Arun Raghunath <you@example.com>"]
+readme = "README.md"
+license = "MIT"
+packages = [{include = "jobtrack", from="src"}]
+
+[tool.poetry.scripts]
+jobtrack = "jobtrack.cli.main:app"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+sqlalchemy = "^2.0"
+psycopg = { extras = ["binary"], version = "^3.2" }
+pydantic = "^2.8"
+typer = "^0.12"
+rich = "^13.7"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6"
+mypy = "^1.11"
+pytest = "^8.3"
+pytest-cov = "^5.0"
+testcontainers = { extras = ["postgres"], version = "^4.8" }
+pre-commit = "^3.8"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+pretty = true
+files = ["src", "tests"]
+
+[[tool.mypy.overrides]]
+module = ["testcontainers.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --cov=jobtrack --cov-report=term-missing"
+markers = [
+    "integration: tests that require a real database",
+]
+
+[build-system]
+requires = ["poetry-core>=1.8.0"]
+build-backend = "poetry.core.masonry.api"
